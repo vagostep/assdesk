@@ -1,0 +1,26 @@
+{
+    "/assdesk-auth/*": {
+      "target": "https://assdesk.azure-api.net",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/assdesk-incident/*": {
+        "target": "https://assdesk.azure-api.net",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/assdesk-asset/*": {
+        "target": "https://assdesk.azure-api.net",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/assdesk-person/*": {
+        "target": "https://assdesk.azure-api.net",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

@@ -1,0 +1,186 @@
+<div class="section landing-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <h2 class="text-center">Editar Incidencia</h2>
+                <hr>
+                <div class="row title">
+                    <div>
+                        <h3 class="text-center">{{incidentNumber}}</h3>
+                    </div>
+                    <div id="incidents">
+                        <a (click)="getIncidentsByActive()">Ver historial</a>
+                    </div>
+                </div>
+                <form class="contact-form" [formGroup]="newIncidentForm">
+                    <div class="row">
+                        <div class="col-md-12 card-info">
+
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Nombre: </strong>{{incident.customer.firstName}} {{incident.customer.lastName}}</span>
+                                </div>
+                            </div>
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Correo: </strong>{{incident.customer.email}}</span>
+                                </div>
+                            </div>
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Telefono: </strong>{{incident.customer.phone}}</span> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Área: </strong>{{incident.customer.area}}</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Piso: </strong>{{incident.customer.floor}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 card-info">
+
+                            <div class="row card-info__text">
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Código: </strong>{{getAsset().code}}</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Modelo: </strong>{{getAsset().mark}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Serie: </strong>{{getAsset().serialNumber}}</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="note"><strong>Garantía: </strong>{{getAsset().warrantyDate | date:'dd/MM/yy'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Prioridad</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="priority" class="form-control" >
+                                    <option value="">SELECCIONE</option>
+                                    <option value="3">BAJA</option>
+                                    <option value="2">MEDIA</option>
+                                    <option value="1">ALTA</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Canal</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="channel" class="form-control" >
+                                    <option value="">SELECCIONE</option>
+                                    <option *ngFor="let channel of channels" [value]="channel.id">{{channel.name}}</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+            
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" formControlName="massive" type="checkbox" value="false" (change)="checkMassive()">
+                                    Incidencia Masiva
+                                    <span class="form-check-sign"></span>
+                                </label>
+                                </div>                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Estado</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="state" class="form-control" (change)="onStateChange()">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="CREADA">CREADA</option>
+                                    <option value="EN_PROGRESO">EN PROGRESO</option>
+                                    <option value="SLA_HOLD">EN ESPERA</option>
+                                    <option value="CERRADA">CERRADA</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <label>Falla</label>
+                    <textarea class="form-control" formControlName="failure" rows="4" placeholder="Cuéntanos la falla..."></textarea>
+
+                    <label>Causa</label>
+                    <textarea class="form-control" formControlName="cause" rows="4" placeholder="Cuéntanos la causa de la falla..."></textarea>
+
+                    <label>Solución</label>
+                    <textarea class="form-control" formControlName="solution" rows="4" placeholder="Cuéntanos la falla..."></textarea>
+
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <label>Nivel</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="level" class="form-control" (change)="onLevelChange()">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Analista</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="analyst" class="form-control" >
+                                    <option value="">SELECCIONE</option>
+                                    <option *ngFor="let analyst of analysts" [value]="analyst.username">{{analyst.firstName}} {{analyst.lastName}}</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mr-auto ml-auto">
+                            <button class="btn btn-primary btn-lg btn-fill" (click)="saveIncident()" [disabled]="newIncidentForm.invalid || newIncidentForm.disabled">Registrar</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

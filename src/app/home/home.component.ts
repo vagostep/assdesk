@@ -13,9 +13,14 @@ export class HomeComponent implements OnInit {
         right: false
     };
 
-    focus;
-    focus1;
-    constructor() { }
+    public isUser: boolean;
+    public isAnalyst: boolean;
+
+    constructor() { 
+
+        this.isUser = localStorage.getItem('authority') === 'USUARIO';
+        this.isAnalyst = localStorage.getItem('authority') === 'ANALISTA';
+    }
 
     ngOnInit() {}
 }

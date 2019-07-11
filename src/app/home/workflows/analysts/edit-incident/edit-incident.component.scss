@@ -1,0 +1,32 @@
+    .input-group-prepend {
+
+        cursor: pointer !important;
+    }
+    .card-info {
+        margin-top: 15px;
+        margin-left: 15px;
+        padding: 8px;
+        border: 1px solid #DDDDDD;
+        flex: 0 0 96% !important;   
+    }
+
+    .card-info__text {
+        margin-bottom: 6px;
+    }
+
+    .btn-add-user {
+        margin-top: -18px;
+    }
+
+    #incidents {
+        margin-left: 16px;
+        margin-top: 28px;
+
+        & a:hover {
+            cursor: pointer;
+        }
+    }
+    .title {
+
+        margin-left: 12rem;
+    }

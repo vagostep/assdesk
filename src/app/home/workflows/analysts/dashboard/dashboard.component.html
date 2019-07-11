@@ -1,0 +1,98 @@
+<div class="section landing-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <h2 class="text-center">Inicio</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="text-center mb-4">Mis Atenciones</h3>
+                        <div class="graph">
+                            <div class="attentions"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-center mb-4">Incidencias Abiertas</h3>
+                        <div class="graph">
+                            <div class="open"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" *ngIf="attentionsData">
+                        <google-chart
+                            type="PieChart"
+                            [data]="attentionsData"
+                            [columnNames]="attentionsColumns">
+                        </google-chart>
+                    </div>
+                    <div class="col-md-6" *ngIf="incidentsData">
+                        <google-chart
+                            type="PieChart"
+                            [data]="incidentsData"
+                            [columnNames]="incidentsColumns"
+                            (select)="selectUser($event)">
+                        </google-chart>
+                    </div>
+                </div>
+                <form class="contact-form" [formGroup]="filtersForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Número</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                <input type="text" maxlength="10" formControlName="number" class="form-control" placeholder="Número" (focus)="focus=true" (blur)="focus=false" >
+                                <div class="input-group-prepend" (click)="searchIncidentByNumber()">
+                                    <span class="input-group-text"><i class="nc-icon nc-zoom-split"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Usuario</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                <input type="text" maxlength="7" formControlName="user" class="form-control" placeholder="Usuario" (focus)="focus=true" (blur)="focus=false" >
+                                <div class="input-group-prepend" (click)="searchIncidentByUser()">
+                                    <span class="input-group-text"><i class="nc-icon nc-zoom-split"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col" sortable="incidentNumber" (sort)="onSort($event)">Incidencia</th>
+                      <th scope="col" sortable="customer.firstName" (sort)="onSort($event)">Usuario</th>
+                      <th scope="col" sortable="asset.code" (sort)="onSort($event)">Activo</th>
+                      <th scope="col" sortable="createdOn" (sort)="onSort($event)">Fecha</th>
+                      <th scope="col" sortable="failure" (sort)="onSort($event)">Falla</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let incident of incidents" (click)="rowClicked(incident.incidentNumber)">
+                      <th scope="row">{{ incident.incidentNumber }}</th>
+                      <td>{{ incident.customer.firstName }} {{ incident.customer.lastName }}</td>
+                      <td>{{ incident.asset.code }}</td>
+                      <td>{{ incident.createdOn }}</td>
+                      <td>{{ incident.failure }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination 
+                        [collectionSize]="totalElements" 
+                        [(page)]="page" 
+                        [pageSize]="pageSize"
+                        maxSize="5"
+                        (pageChange)="onPageChange($event)">
+                    </ngb-pagination>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

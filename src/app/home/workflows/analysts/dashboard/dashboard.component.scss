@@ -1,0 +1,26 @@
+.input-group-prepend {
+
+    cursor: pointer !important;
+}
+
+.ct-series-a .ct-splice-pie {
+
+    fill: hsl(120, 40%, 60%);
+    stroke: white;
+    stroke-width: 4px;
+}
+
+.ct-label {
+    color: white !important; 
+    fill: white !important;
+}
+
+tr {
+
+    cursor: pointer !important;
+
+    &:hover {
+
+        background-color: rgba(0,0,0,.9);
+    }
+}

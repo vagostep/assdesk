@@ -22,11 +22,15 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/assets/sass/paper-kit.scss",
               "src/assets/css/demo.css",
-              "src/assets/css/nucleo-icons.css"
+              "src/assets/css/nucleo-icons.css",
+              "node_modules/chartist/dist/chartist.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chartist/dist/chartist.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -51,7 +55,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "assdesk:build"
+            "browserTarget": "assdesk:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

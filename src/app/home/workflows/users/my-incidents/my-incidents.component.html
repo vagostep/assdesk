@@ -1,0 +1,105 @@
+<div class="section landing-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <h2 class="text-center">Mis Incidencias</h2>
+                <form class="contact-form" [formGroup]="filtersForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Número</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="nc-icon nc-app"></i></span>
+                                </div>
+                                <input type="text" formControlName="number" class="form-control" placeholder="Número" (focus)="focus=true" (blur)="focus=false" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Estado</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="state" class="form-control" >
+                                    <option value="">TODOS</option>
+                                    <option value="CREADA">CREADA</option>
+                                    <option value="EN_PROGRESO">EN PROGRESO</option>
+                                    <option value="SLA_HOLD">EN ESPERA</option>
+                                    <option value="CERRADA">CERRADA</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Fecha Inicio</label>
+                            <div class="input-group date" [ngClass]="{'input-group-focus':focus===true}">
+                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                     name="dp1" formControlName="dateInit" ngbDatepicker #da="ngbDatepicker" (click)="da.toggle()" (focus)="focus=true" (blur)="focus=false" />
+                                <div class="input-group-append">
+                                    <span class="glyphicon glyphicon-calendar input-group-text">
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Fecha Fin</label>
+                            <div class="input-group date" [ngClass]="{'input-group-focus':focus===true}">
+                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                     name="dp2" formControlName="dateEnd" ngbDatepicker #db="ngbDatepicker" (click)="db.toggle()" (focus)="focus=true" (blur)="focus=false" />
+                                <div class="input-group-append">
+                                    <span class="glyphicon glyphicon-calendar input-group-text">
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ml-auto">
+                            <button class="btn btn-primary btn-lg btn-fill float-right" (click)="searchIncidents()" [disabled]="filtersForm.disabled">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col" sortable="incidentNumber" (sort)="onSort($event)">Incidencia</th>
+                      <th scope="col" sortable="status" (sort)="onSort($event)">Estado</th>
+                      <th scope="col" sortable="asset.code" (sort)="onSort($event)">Activo</th>
+                      <th scope="col" sortable="createdOn" (sort)="onSort($event)">Fecha</th>
+                      <th scope="col" sortable="failure" (sort)="onSort($event)">Falla</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let incident of incidents">
+                      <th scope="row">{{ incident.incidentNumber }}</th>
+                      <td>{{ incident.status }}</td>
+                      <td>{{ incident.asset.code }}</td>
+                      <td>{{ incident.createdOn }}</td>
+                      <td>{{ incident.failure }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination 
+                        [collectionSize]="totalElements" 
+                        [(page)]="page" 
+                        [pageSize]="pageSize"
+                        maxSize="5"
+                        (pageChange)="onPageChange($event)">
+                    </ngb-pagination>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

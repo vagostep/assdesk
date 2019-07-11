@@ -1,0 +1,33 @@
+<div class="section landing-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <h2 class="text-center">Nueva Incidencia</h2>
+                <form class="contact-form" [formGroup]="newIncidentForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Activo</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="nc-icon nc-laptop"></i></span>
+                                </div>
+                                <select formControlName="asset" class="form-control" >
+                                    <option value="">SELECCIONE</option>
+                                    <option *ngFor="let asset of assets" [value]="asset.code">{{asset.type}} {{asset.mark}}</option>
+                                </select>
+                                <!--input type="text" formControlName="active" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false"-->
+                            </div>
+                        </div>
+                    </div>
+                    <label>Falla</label>
+                    <textarea class="form-control" formControlName="failure" rows="4" placeholder="Cuéntanos la falla..."></textarea>
+                    <div class="row">
+                        <div class="col-md-4 mr-auto ml-auto">
+                            <button class="btn btn-primary btn-lg btn-fill" (click)="saveIncident()" [disabled]="newIncidentForm.invalid || newIncidentForm.disabled">Registrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

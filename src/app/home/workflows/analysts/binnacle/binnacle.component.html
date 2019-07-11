@@ -1,0 +1,51 @@
+<div class="section landing-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <h2 class="text-center">Bitácora</h2>
+                <form class="contact-form" [formGroup]="binnacleForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Causa</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                <input type="text" formControlName="cause" class="form-control" placeholder="Número" (focus)="focus=true" (blur)="focus=false" >
+                                <div class="input-group-prepend" (click)="searchByCause()">
+                                    <span class="input-group-text"><i class="nc-icon nc-zoom-split"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Falla</label>
+                            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                <input type="text" formControlName="failure" class="form-control" placeholder="Usuario" (focus)="focus=true" (blur)="focus=false" >
+                                <div class="input-group-prepend" (click)="searchByFailure()">
+                                    <span class="input-group-text"><i class="nc-icon nc-zoom-split"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngFor="let binnacle of binnacles">
+                        <div class="col-md-12 card-info">
+
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Falla: </strong>{{binnacle.failure}}</span>
+                                </div>
+                            </div>
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Causa: </strong>{{binnacle.cause}}</span>
+                                </div>
+                            </div>
+                            <div class="row card-info__text">
+                                <div class="col-md-12">
+                                    <span class="note"><strong>Solución: </strong>{{binnacle.solution}}</span> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

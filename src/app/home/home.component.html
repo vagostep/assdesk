@@ -1,34 +1,79 @@
 <div class="wrapper">
-    <div class="page-header section-dark" style="background-image: url('assets/img/antoine-barres.jpg')">
-        <div class="filter"></div>
-        <div class="content-center">
-            <div class="container">
-                <div class="title-brand">
-                    <div class="angular-logo">
-                        <img src="assets/img/angular2-logo.png" alt="">
-                    </div>
-                    <h1 class="presentation-title">Paper Kit 2 Angular</h1>
-                    <div class="fog-low">
-                        <img src="assets/img/fog-low.png" alt="">
-                    </div>
-                    <div class="fog-low right">
-                        <img src="assets/img/fog-low.png" alt="">
-                    </div>
-                </div>
-
-                <h2 class="presentation-subtitle text-center">Free Bootstrap 4 UI Kit for Angular 7</h2>
+    <!--nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">ASSDESK</a>
+            <button class="navbar-toggler navbar-toggler-right burger-menu" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-primary">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" routerLink="/home/my-incidents"><i class="nc-icon nc-compass-05" aria-hidden="true"></i>&nbsp;Mis Incidencias</a>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" routerLink="/home/new-incident"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Nueva Incidencia</a>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" routerLink="/signup"><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i>&nbsp;Salir</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
-        <h6 class=" category-absolute ml-auto mr-auto">Designed and coded by
-        <!-- <h6 class="category category-absolute">Designed and coded by -->
+    </nav-->
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+            <a class="navbar-brand">ASSDESK</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item" routerLinkActive="active" *ngIf="isUser">
+                        <div ngbDropdown class="d-inline-block dropdown">
+                            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Incidencias</a>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
+                                <a class="dropdown-item" routerLink="/home/users/new-incident">Nueva Incidencia</a>
+                                <a class="dropdown-item" routerLink="/home/users/my-incidents">Mis Incidencias</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active" *ngIf="isAnalyst">
+                        <div class="d-inline-block">
+                            <a class="nav-link" id="dashboard" routerLink="/home/analysts/dashboard">Dashboard</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active" *ngIf="isAnalyst">
+                        <div ngbDropdown class="d-inline-block dropdown">
+                            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Incidencias</a>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
+                                <a class="dropdown-item" routerLink="/home/analysts/new-incident">Nueva Incidencia</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active" *ngIf="isAnalyst">
+                        <div class="d-inline-block">
+                            <a class="nav-link" id="binnacle" routerLink="/home/analysts/binnacle">Bitácora</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-menu-icon">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <a href="https://www.creative-tim.com" target="_blank">
-                <img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
-            </a>
-        </h6>
-    </div>
-    <div class="main">
+    <router-outlet></router-outlet>
+
+    <!--div class="main">
         <app-components></app-components>
         <div class="section section-dark section-nucleo-icons">
             <div class="container">
@@ -179,5 +224,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 </div>

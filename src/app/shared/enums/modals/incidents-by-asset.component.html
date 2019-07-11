@@ -1,0 +1,30 @@
+
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <h4 class="text-center">Histórico de Incidencias</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col" sortable="createdOn" (sort)="onSort($event)">Creada</th>
+                    <th scope="col" sortable="failure" (sort)="onSort($event)">Falla</th>
+                    <th scope="col" sortable="solution" (sort)="onSort($event)">Solución</th>
+                    <th scope="col" sortable="status" (sort)="onSort($event)">Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let incident of incidents">
+                        <td>{{ incident.createdOn }}</td>
+                        <td>{{ incident.failure }}</td>
+                        <td>{{ incident.solution }}</td>
+                        <td>{{ incident.status }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>

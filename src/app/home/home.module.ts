@@ -1,24 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from './home.component';
 
 import { ComponentsModule } from '../components/components.module';
+import { HomeRoutingModule } from './home-routing.module';
+import { IsUserGuard } from './workflows/commons/guards/is-user.guard';
 
 @NgModule({
     imports: [
         CommonModule,
-        BrowserModule,
         FormsModule,
         RouterModule,
-        ComponentsModule
+        ComponentsModule,
+        HomeRoutingModule,
+        NgbModule
     ],
     declarations: [ HomeComponent ],
     exports:[ HomeComponent ],
-    providers: []
+    providers: [ IsUserGuard ]
 })
 export class HomeModule { }
